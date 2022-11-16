@@ -3,6 +3,7 @@ package in.upcode.eShop.controller;
 import in.upcode.eShop.model.Product;
 import in.upcode.eShop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +17,10 @@ public class ProductController {
     ProductService productService;
 
     @RequestMapping("/products")
-    public String viewItemsPage(ModelMap model) {
-        List<Product> listProducts = productService.listAll();
+    public String viewItemsPage(ModelMap model,@Param("keyword") String keyword) {
+        List<Product> listProducts = productService.listAll(keyword);
         model.addAttribute("listItems", listProducts);
+        model.addAttribute("keyword", keyword);
         return "products";
     }
 

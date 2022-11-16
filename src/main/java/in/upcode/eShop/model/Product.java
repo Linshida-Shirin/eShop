@@ -1,7 +1,7 @@
 package in.upcode.eShop.model;
 import javax.persistence.*;
 @Entity
-@Table(name = "items")
+@Table(name = "products")
 public class Product {
 
     private Long id;
